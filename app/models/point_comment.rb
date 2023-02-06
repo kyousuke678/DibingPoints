@@ -1,0 +1,2 @@
+class PointComment < ApplicationRecord
+end
