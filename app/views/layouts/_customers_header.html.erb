@@ -12,17 +12,22 @@
           <% if customer_signed_in? %>
             <li class="nav-item">
               <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "MyPage", users_path, class: 'nav-link text-dark' %>
+                <%= link_to "MyPage", user_path(current_customer), class: 'nav-link text-dark' %>
               </button>
             </li>
             <li class="nav-item ml-2">
               <button type="button" class="btn btn-outline-dark btn-nm">
-                <%#= link_to "Items", items_path, class: 'nav-link text-dark' %>
+                <%= link_to "write", new_point_path, class: 'nav-link text-dark' %>
               </button>
             </li>
             <li class="nav-item ml-2">
               <button type="button" class="btn btn-outline-dark btn-nm">
-                <%#= link_to "Cart", cart_items_path, class: 'nav-link text-dark' %>
+                <%= link_to "users", users_path, class: 'nav-link text-dark' %>
+              </button>
+            </li>
+            <li class="nav-item ml-2">
+              <button type="button" class="btn btn-outline-dark btn-nm">
+                <%= link_to "points", points_path, class: 'nav-link text-dark' %>
               </button>
             </li>
             <li class="nav-item ml-2">

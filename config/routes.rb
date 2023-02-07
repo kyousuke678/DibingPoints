@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/home/about" => "homes#about", as: "about"
 
   scope module: :customers do
-    resources :points, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resources :points, only: [:index,:show,:edit,:new,:create,:destroy,:update] do
       resources :point_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
