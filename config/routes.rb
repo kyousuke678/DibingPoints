@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :customers
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "customers/registrations",
+    sessions: 'customers/sessions'
+  }
   #会員側のルーティング設定
   root "homes#top"
   get "/home/about" => "homes#about", as: "about"
