@@ -6,8 +6,9 @@ class Customers::PointsController < ApplicationController
   
   def create
     @point = Point.new(point_params)
-    @point.save
-    redirect_to points_path(@point), notice: "You have created book successfully."
+    @point.customer_id = current_customer.id
+    @point.save!
+    redirect_to points_path(@point), notice: "You have created point successfully."
   end
   
   def index
@@ -17,6 +18,6 @@ class Customers::PointsController < ApplicationController
   private
 
   def point_params
-    params.require(:point).permit(:title, :body, :address, :rate)
+    params.require(:point).permit(:name, :body, :address, :rate)
   end
 end
