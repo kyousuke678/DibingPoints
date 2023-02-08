@@ -1,0 +1,28 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% points.each do |point| %>
+      <tr>
+        <td>
+          <%= link_to user_path(point.user) do %>
+            <% if user.image.attached? %>
+             <%= image_tag user.image %>
+            <% else %>
+             <%= image_tag 'no_image.jpg' %>
+            <% end %>
+           <% end %>
+        </td>
+        <td><%= link_to point.title,point %></td>
+        <td><%= point.body %></td>
+        <td>コメント数: <%= book.book_comments.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
