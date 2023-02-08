@@ -1,7 +1,7 @@
 <table class='table'>
   <tr>
-    <% if user.image.attached? %>
-      <%= image_tag user.image %>
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image %>
     <% else %>
       <%= image_tag 'no_image.jpg' %>
     <% end %>
