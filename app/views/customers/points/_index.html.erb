@@ -11,7 +11,7 @@
     <% points.each do |point| %>
       <tr>
         <td>
-          <%= link_to user_path(point.user) do %>
+          <%= link_to user_path(point.customer) do %>
             <% if user.image.attached? %>
              <%= image_tag user.image %>
             <% else %>
@@ -19,9 +19,12 @@
             <% end %>
            <% end %>
         </td>
-        <td><%= link_to point.title,point %></td>
+        <td>
+          <%= link_to point_path(point) do %>
+            <%= point.name %>
+          <% end %>
+        </td>
         <td><%= point.body %></td>
-        <td>コメント数: <%= book.book_comments.count %></td>
       </tr>
     <% end %>
   </tbody>
