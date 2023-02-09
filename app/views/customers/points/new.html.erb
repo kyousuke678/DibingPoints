@@ -2,27 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2 class="mt-3">New book</h2>
-
-        <%= form_with model:@point,local:true do |f| %>
-          <div class="form-group">
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control book_title' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :body %>
-            <%= f.text_area :body, class: 'form-control book_body' %>
-          </div>
-          
-          <div class="form-group">
-            <%= f.label :address %>
-            <%= f.text_area :address, class: 'form-control book_body' %>
-          </div>
-          
-          <div class="form-group">
-            <%= f.submit class: 'btn btn-success' %>
-          </div>
-        <% end %>
-
+      <%= render 'form', point: @point %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>（地図機能投稿予定）</h2>

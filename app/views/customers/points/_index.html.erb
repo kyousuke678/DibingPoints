@@ -25,6 +25,11 @@
           <% end %>
         </td>
         <td><%= point.body %></td>
+        <td>
+          <% point.tags.each do |tag| %>
+            <%= tag.category %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

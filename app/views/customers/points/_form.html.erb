@@ -12,6 +12,18 @@
     <%= f.label :address %>
     <%= f.text_area :address, class: 'form-control book_body' %>
   </div>
+  
+  <div class="check_box">
+    <span><%= f.label :tag, 'タグ' %></span>
+    <div>
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :category, {include_hidden: false}) do |tag| %> 
+        <%= tag.label do %>
+          <%= tag.check_box %>
+          <%= tag.text %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
           
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
