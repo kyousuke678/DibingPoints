@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins
+
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+  
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "customers/registrations",
     sessions: 'customers/sessions'
   }
+  
   #会員側のルーティング設定
   root "homes#top"
   get "/home/about" => "homes#about", as: "about"
@@ -16,4 +21,11 @@ Rails.application.routes.draw do
     resources :users, only: [:index,:show,:edit,:update] do
     end
   end
+  
+  #管理者側のルーティング設定
+  namespace :admin do
+    root 'homes#top'
+
+  end
+  
 end
