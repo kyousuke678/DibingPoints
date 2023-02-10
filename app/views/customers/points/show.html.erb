@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td>
+          </td>
+          
+          
+          <td><%= @point.name %></td>
+          <td><%= @point.body %></td>
+          <td><%= @point.address %></td>
+          <% if @point.customer == current_customer %>
+            <td><%= link_to 'Edit', edit_point_path(@point), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Destroy', @point, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+          <% end %>
+        </tr>
+      </table>
+
+
+    </div>
+  </div>
+</div>

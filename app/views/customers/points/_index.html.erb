@@ -12,8 +12,8 @@
       <tr>
         <td>
           <%= link_to user_path(point.customer) do %>
-            <% if user.image.attached? %>
-             <%= image_tag user.image %>
+            <% if point.customer.profile_image.attached? %>
+             <%= image_tag point.customer.profile_image %>
             <% else %>
              <%= image_tag 'no_image.jpg' %>
             <% end %>
@@ -25,6 +25,11 @@
           <% end %>
         </td>
         <td><%= point.body %></td>
+        <td>
+          <% point.tags.each do |tag| %>
+            <%= tag.category %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
