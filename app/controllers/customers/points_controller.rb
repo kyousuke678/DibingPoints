@@ -25,6 +25,7 @@ class Customers::PointsController < ApplicationController
 
   def show
     @point = Point.find(params[:id])
+    @point_comment = PointComment.new
   end
 
   def edit
