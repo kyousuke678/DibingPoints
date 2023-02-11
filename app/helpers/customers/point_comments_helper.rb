@@ -1,0 +1,2 @@
+module Customers::PointCommentsHelper
+end

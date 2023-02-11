@@ -25,6 +25,7 @@ class Customers::PointsController < ApplicationController
 
   def show
     @point = Point.find(params[:id])
+    @point_comment = PointComment.new
   end
 
   def edit
@@ -42,7 +43,6 @@ class Customers::PointsController < ApplicationController
       if @tag.present?  #投稿されたtag.id情報が送られた場合
         @point.save_genres(@tag)  #point.rbのメソッドを呼び出す
       end
-
       redirect_to point_path(@point), notice: "You have updated point successfully."
     else
       render "edit"

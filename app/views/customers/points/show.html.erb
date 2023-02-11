@@ -15,13 +15,19 @@
           <td><%= @point.name %></td>
           <td><%= @point.body %></td>
           <td><%= @point.address %></td>
+          <td class="point-comments-counter">
+            <%= render "customers/point_comments/counter", point: @point %>
+          </td>
           <% if @point.customer == current_customer %>
             <td><%= link_to 'Edit', edit_point_path(@point), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @point, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
-
+      <div class="point-comments-index">
+        <%= render "customers/point_comments/index", point: @point %>
+      </div>
+      <%= render "customers/point_comments/form", point: @point, point_comment: @point_comment %>
 
     </div>
   </div>
