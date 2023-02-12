@@ -15,6 +15,7 @@
           <td><%= @point.name %></td>
           <td><%= @point.body %></td>
           <td><%= @point.address %></td>
+          <td><%= render "static_rate", point: @point %></td>
           <td class="point-comments-counter">
             <%= render "customers/point_comments/counter", point: @point %>
           </td>

@@ -1,0 +1,15 @@
+<div id="rate_<%= point.id %>"></div>
+<script>
+$( function() {
+    let raty_<%= point.id %> = document.querySelector('#rate_<%= point.id %>');
+    rate_<%= point.id %>.innerHTML = ""
+    let option_<%= point.id %> = {  
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= point.rate %>",
+        readOnly: true,
+      };
+    raty(raty_<%= point.id %> ,option_<%= point.id %>);
+});
+</script>

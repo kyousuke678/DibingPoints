@@ -1,12 +1,12 @@
 <div class="container-fluid registration py-5">
   <div class="row">
     <div class="offset-2">
-      <h2 class="red-border px-3">ログイン</h2>
+      <h2 class="px-3">ログイン</h2>
     </div>
   </div>
   <div class="row">
     <div class="offset-3 mt-3">
-      <strong class="red-border px-3 pb-1">会員の方はこちらからログイン</strong>
+      <strong class="px-3 pb-1">会員の方はこちらからログイン</strong>
     </div>
   </div>
 
@@ -36,12 +36,13 @@
 
   <div class="row">
     <div class="offset-3 mt-5">
-      <strong class="red-border px-3 pb-1">登録がお済みでない方</strong>
+      <strong class=" px-3 pb-1">登録がお済みでない方</strong>
     </div>
   </div>
 
   <div class="row">
     <div class="offset-4 mx-10 mt-2">
+      <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post, class: "btn btn-outline-success"%>
       <%= link_to "こちらから新規登録を行ってください。", new_registration_path(resource_name), class: "btn btn-outline-danger" %>
     </div>
   </div>

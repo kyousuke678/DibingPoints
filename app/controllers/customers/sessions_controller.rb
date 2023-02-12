@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Customers::SessionsController < Devise::SessionsController
+  before_action :reject_customer, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -24,6 +25,14 @@ class Customers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  # ゲストログイン
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end  
+
 protected
 
   def reject_customer
