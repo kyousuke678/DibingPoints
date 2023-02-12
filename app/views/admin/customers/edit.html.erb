@@ -1,0 +1,33 @@
+
+<div class="offset-2">
+  <div class="row mt-4">
+    <mark class="h4 table-secondary"><%= @customer.name %></mark>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :name, autocomplete: "name" %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.text_field :email, size: "40*40", autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :会員ステータス %></td>
+          <td>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, '退会', value: :true %>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, '有効', value: :false %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.submit '変更を保存', class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
