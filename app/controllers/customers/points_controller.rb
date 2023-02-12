@@ -54,6 +54,12 @@ class Customers::PointsController < ApplicationController
     @point.destroy
     redirect_to points_path
   end
+  
+  def search
+    @points = Point.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
 
   private
 
