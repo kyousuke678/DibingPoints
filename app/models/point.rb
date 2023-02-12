@@ -17,4 +17,8 @@ class Point < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  def self.search(keyword)
+    where(["name like? OR body like? OR address like?", "%#{keyword}%", "%#{keyword}%","%#{keyword}%"])
+  end
 end
