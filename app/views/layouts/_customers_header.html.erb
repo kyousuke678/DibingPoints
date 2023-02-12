@@ -11,56 +11,51 @@
           <p id="notice"><%= notice %></p>  
           <% if customer_signed_in? %>
             <li class="nav-item">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "MyPage", user_path(current_customer), class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to user_path(current_customer), class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">MyPage</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "write", new_point_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to new_point_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">write</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "users", users_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to users_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">users</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "points", points_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to points_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">points</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "Logout", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to destroy_customer_session_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">Logout</button>
+              <% end %>
             </li>
           <% elsif admin_signed_in? %>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "Logout", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to destroy_admin_session_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">Logout</button>
+              <% end %>
             </li>
           <% else %>
             <li class="nav-item">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "About", about_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to about_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">About</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%#= link_to "Items", items_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">SignUp</button>
+              <% end %>
             </li>
             <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "SignUp", new_customer_registration_path, class: 'nav-link text-dark' %>
-              </button>
-            </li>
-            <li class="nav-item ml-2">
-              <button type="button" class="btn btn-outline-dark btn-nm">
-                <%= link_to "Login", new_customer_session_path, class: 'nav-link text-dark' %>
-              </button>
+              <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+                <button type="button" class="btn btn-outline-dark btn-nm">Login</button>
+              <% end %>
             </li>
           </ul>
           <% end %>
