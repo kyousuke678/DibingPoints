@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "homes#top"
-  
+
   #ゲストログイン
   devise_scope :customer do
     post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
@@ -30,7 +30,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top'
-    resources :customers,only: [:index,:show,:edit,:update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :points, only: [:index, :show, :edit, :update]
   end
 
 end

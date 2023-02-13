@@ -15,6 +15,11 @@
               </button>
             </li>
             <li class="nav-item ml-2">
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                <%= link_to "point", admin_points_path, class: "nav-link" %>
+              </button>
+            </li>
+            <li class="nav-item ml-2">
               <button type="button" class="btn btn-secondary btn-sm">
                 <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "nav-link" %>
               </button>

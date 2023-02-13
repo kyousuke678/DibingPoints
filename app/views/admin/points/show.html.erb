@@ -1,0 +1,43 @@
+<div class="offset-2">
+  <div class="row mt-4">
+    <mark class="h4 table-secondary">point 詳細</mark>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-xs-offset-1">
+      <table class="table table-bordered table-condensed" >
+        <tbody>
+          <tr>
+            <td class="info table-secondary border-">name</td>
+            <td class="text-left"><%= @points.name %></td>
+          </tr>
+          <tr>
+            <td class="info table-secondary">body</td>
+            <td class="text-left"><%= @points.body %></td>
+          </tr>
+          <tr>
+            <td class="info table-secondary">address</td>
+            <td class="text-left"><%= @points.address %></td>
+          </tr>
+          <tr>
+            <td class="info table-secondary">tag</td>
+            <td class="text-left">
+              <% @points.tags.each do |tag| %>
+                <%= tag.category %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="info table-secondary">star</td>
+            <td class="text-left"><%= render "customers/points/static_rate", point: @points %></td>
+          </tr>
+          <tr>
+            <td class="info table-secondary">コメント数</td>
+            <td class="text-left"><%= render "customers/point_comments/counter", point: @points %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= link_to "編集する", edit_admin_point_path(@points.id), class: "btn btn-success" %>
+</div>
