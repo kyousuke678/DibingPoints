@@ -92,9 +92,11 @@ ActiveRecord::Schema.define(version: 2023_02_13_075647) do
   create_table "points", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.string "address"
-    t.integer "customer_id"
     t.float "rate"
+    t.string "address"
+    t.float "lat"
+    t.float "lng"
+    t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

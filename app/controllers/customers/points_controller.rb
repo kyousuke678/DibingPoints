@@ -7,15 +7,15 @@ class Customers::PointsController < ApplicationController
   def create
     @point = Point.new(point_params)
     @point.customer_id = current_customer.id
-    @point.save
+    if @point.save
+      redirect_to user_path(@point), notice: "You have created point successfully."
+    end
     @tag = params[:point][:tag_ids]
     if @tag.present?  #投稿されたtag.id情報が送られた場合
         @point.save_genres(@tag)  #point.rbのメソッドを呼び出す
     else
-      render 'new'
+      render :new
     end
-
-    redirect_to points_path(@point), notice: "You have created point successfully."
   end
 
   def index
@@ -65,6 +65,6 @@ class Customers::PointsController < ApplicationController
   private
 
   def point_params
-    params.require(:point).permit(:name, :body, :address, :rate)
+    params.require(:point).permit(:name, :body, :address, :rate, :lat, :lng)
   end
 end
