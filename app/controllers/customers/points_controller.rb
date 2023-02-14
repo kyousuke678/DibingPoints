@@ -20,8 +20,7 @@ class Customers::PointsController < ApplicationController
 
   def index
     #byebug
-    @points = params[:tag_id].present? ? Tag.find(params[:tag_id]).points : Point.all
-    @points = Point.all.order(params[:sort])
+    @points = params[:tag_id].present? ? Tag.find(params[:tag_id]).points.order(params[:sort]) : Point.all.order(params[:sort])
   end
 
   def show
