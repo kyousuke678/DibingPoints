@@ -21,6 +21,11 @@ class Point < ApplicationRecord
   scope :created_5day_ago, -> { where(created_at: 5.day.ago.all_day) } #5日前
   scope :created_6day_ago, -> { where(created_at: 6.day.ago.all_day) } #6日前
   
+  validates :name,presence:true
+  validates :body,presence:true,length:{minimum: 2,maximum:200}
+  validates :rate,presence:true
+  validates :tag, acceptance: true
+  
   def save_genres(tag_ids)
     tag_ids.each do |tag_id|
       point_tag = Tag.find_by(id: tag_id) #データベースから紐ずいてる情報をとってきている
