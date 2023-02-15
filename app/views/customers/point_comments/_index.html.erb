@@ -5,7 +5,11 @@
         
         <td>
           <%= link_to user_path(point_comment.customer) do %>
-            <%#= image_tag book_comment.user.get_profile_image, size: "100x100" %><br>
+                <% if point.customer.profile_image.attached? %>
+                  <%= image_tag point.customer.profile_image %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg' %>
+                <% end %><br>
             <%= point_comment.customer.name %>
           <% end %>
         </td>
