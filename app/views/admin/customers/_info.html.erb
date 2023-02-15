@@ -1,0 +1,52 @@
+<table class='table'>
+  <tr>
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image %>
+    <% else %>
+      <%= image_tag 'no_image.jpg' %>
+    <% end %>
+  </tr>
+  <tr>
+	  <th>id</th>
+	  <th><%= user.id %></th>
+  </tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+  <tr>
+    <th>follows</th>
+    <th><%= user.followings.count %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= user.followers.count %></th>
+  </tr>
+  <tr>
+    <th>投稿数</th>
+    <th><%= points.count %></th>
+  </tr>
+  <tr>
+    <th>会員ステータス</th>
+    <th>
+      <% if user.is_deleted %>
+        <p>退会</p>
+      <% else %>
+        <p class="text-success">有効</p>
+      <% end %>
+    </th>
+  </tr>
+</table>
+
+<div class='row'>
+<%= link_to edit_admin_customer_path(@customer.id), class: "btn btn-outline-secondary btn-block" do %>
+  <i class="fas fa-user-cog"></i>
+<% end %>
+
+
+</div>
