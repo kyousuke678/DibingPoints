@@ -1,4 +1,5 @@
 class Customers::PointsController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @point = Point.new
@@ -8,7 +9,7 @@ class Customers::PointsController < ApplicationController
     @point = Point.new(point_params)
     @point.customer_id = current_customer.id
     if @point.save
-      redirect_to user_path(@point), notice: "You have created point successfully."
+      redirect_to user_path(current_customer), notice: "You have created point successfully."
     end
     @tag = params[:point][:tag_ids]
     if @tag.present?  #投稿されたtag.id情報が送られた場合
@@ -54,7 +55,7 @@ class Customers::PointsController < ApplicationController
     @point.destroy
     redirect_to points_path
   end
-  
+
   def search
     @points = Point.search(params[:keyword])
     @keyword = params[:keyword]

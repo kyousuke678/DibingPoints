@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top'
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :points, only: [:index, :show, :edit, :update]
+    resources :points, only: [:index, :show, :edit, :update, :destroy]
   end
 
 end
