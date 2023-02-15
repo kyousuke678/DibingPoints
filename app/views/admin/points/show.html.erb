@@ -1,43 +1,85 @@
-<div class="offset-2">
-  <div class="row mt-4">
-    <mark class="h4 table-secondary">point 詳細</mark>
-  </div>
-  
-  <div class="row mt-4">
-    <div class="col-xs-offset-1">
-      <table class="table table-bordered table-condensed" >
-        <tbody>
-          <tr>
-            <td class="info table-secondary border-">name</td>
-            <td class="text-left"><%= @points.name %></td>
-          </tr>
-          <tr>
-            <td class="info table-secondary">body</td>
-            <td class="text-left"><%= @points.body %></td>
-          </tr>
-          <tr>
-            <td class="info table-secondary">address</td>
-            <td class="text-left"><%= @points.address %></td>
-          </tr>
-          <tr>
-            <td class="info table-secondary">tag</td>
-            <td class="text-left">
-              <% @points.tags.each do |tag| %>
-                <%= tag.category %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class="info table-secondary">star</td>
-            <td class="text-left"><%= render "customers/points/static_rate", point: @points %></td>
-          </tr>
-          <tr>
-            <td class="info table-secondary">コメント数</td>
-            <td class="text-left"><%= render "customers/point_comments/counter", point: @points %></td>
-          </tr>
-        </tbody>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6'>
+      <p class="mt-4"></p>
+      <mark class="h4 table-secondary">point show</mark><br>
+      
+      <div class="mt-2">
+        <%= link_to "編集する", edit_admin_point_path(@point.id), class: "btn btn-success" %>
+        <%= link_to 'Destroy', admin_point_path(@point), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger"%>
+      </div>
+      <table class='table'>
+        <tr>
+       	  <th>id.No</th>
+       	  <th><%= @point.id %></th>
+        </tr>
+        <tr>
+       	  <th>point name</th>
+       	  <th><%= @point.name %></th>
+        </tr>
+        <tr>
+       	  <th>thoughts</th>
+       	  <th><%= @point.body %></th>
+        </tr>
+       	  <th>tag</th>
+       	  <th>
+       	    <% @point.tags.each do |tag| %>
+              <%= tag.category %>
+            <% end %>
+       	  </th>
+        </tr>
+        <tr>
+          <th>五段階評価</th>
+          <th><%= render "customers/points/static_rate", point: @point %></th>
+        </tr>
+        <tr>
+          <th>コメント数</th>
+          <th class="point-comments-counter">
+            <%= render "customers/point_comments/counter", point: @point %>
+          </th>
+        </tr>
       </table>
+        
+        
+
+    
     </div>
+    
+    
+    <div class='col-md-6'>
+  		
+  		
+        <!-----------地図情報----------->
+        <h2 class="my-5">周辺情報</h2>
+      <div id='map'></div>
+      <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      </style>
+      
+      <!-- js部分 -->
+      <script>
+      //初期マップの設定
+      let map
+      let marker
+      function initMap(){
+        geocoder = new google.maps.Geocoder()
+      
+        map = new google.maps.Map(document.getElementById('map'), {
+          center:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
+          zoom: 15,
+        });
+      
+         marker = new google.maps.Marker({
+          position:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
+          map: map
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVjViuZ0RsFdHm369SRkDDpfTa658CFXo&callback=initMap" async defer></script>
+        <!------------ここまで----------->
+        
   </div>
-  <%= link_to "編集する", edit_admin_point_path(@points.id), class: "btn btn-success" %>
 </div>
