@@ -19,8 +19,10 @@ class Customers::PointsController < ApplicationController
   end
 
   def index
-    #byebug
+    #tagによる絞り込み機能　と　sortによる並び替え
     @points = params[:tag_id].present? ? Tag.find(params[:tag_id]).points.order(params[:sort]) : Point.all.order(params[:sort])
+    #ページネーションの記述
+    @points = Point.page(params[:page]).per(10)
   end
 
   def show
@@ -54,7 +56,7 @@ class Customers::PointsController < ApplicationController
     @point.destroy
     redirect_to points_path
   end
-  
+
   def search
     @points = Point.search(params[:keyword])
     @keyword = params[:keyword]
