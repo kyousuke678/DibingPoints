@@ -1,5 +1,6 @@
 class Customers::UsersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :guest_user_check, only: [:edit, :update]
 
   def show
     @user = Customer.find(params[:id])
@@ -33,7 +34,11 @@ class Customers::UsersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :profile_image, :introduction)
+    params.require(:customer).permit(:name, :email, :profile_image, :introduction)
+  end
+
+  def guest_user_check
+    redirect_to root_path, notice: 'ゲストユーザーはこの操作はできません。' if current_customer.email == 'guest@example.com'
   end
 
 end
