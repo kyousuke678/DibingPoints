@@ -1,0 +1,35 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% points.each do |point| %>
+      <tr>
+        <td>
+          <% if point.customer.profile_image.attached? %>
+           <%= image_tag point.customer.profile_image %>
+          <% else %>
+           <%= image_tag 'no_image.jpg' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to admin_point_path(point) do %>
+            <%= point.name %>
+          <% end %>
+        </td>
+        <td><%= point.body %></td>
+        <td>
+          <% point.tags.each do |tag| %>
+            <%= tag.category %>
+          <% end %>
+        </td>
+        <td><%= render "customers/points/static_rate", point: point %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

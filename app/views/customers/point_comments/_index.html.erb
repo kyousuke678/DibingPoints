@@ -1,0 +1,25 @@
+<table>
+  <tbody>
+      <% point.point_comments.each do |point_comment| %>
+      <tr>
+        
+        <td>
+          <%= link_to user_path(point_comment.customer) do %>
+                <% if point.customer.profile_image.attached? %>
+                  <%= image_tag point.customer.profile_image %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg' %>
+                <% end %><br>
+            <%= point_comment.customer.name %>
+          <% end %>
+        </td>
+        <td><%= point_comment.comment %></td>
+        <td>
+          <% if point_comment.customer == current_customer %>
+            <%= link_to "Destroy", point_point_comment_path(point, point_comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

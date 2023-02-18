@@ -1,0 +1,21 @@
+<div class='container px-5 px-sm-0'>
+  <%#= render 'layouts/errors', obj: @points %>
+  <div class='row'>
+    <div class='col-md-10 offset-md-1'>
+      <h2>point</h2>
+      <%= link_to "新しい順", points_path(sort: 'created_at DESC') %> |
+      <%= link_to "古い順", points_path(sort: 'created_at ASC') %>
+    | <%= link_to "評価の高い順", points_path(sort: 'rate DESC') %>
+      <%= render 'index', points: @points %>
+    </div>
+  </div>
+
+  <div class= "container" >
+    <div class= "row" >
+      <div class= "col-8 offset-md-4 py-2 mt-5" >
+        <%= paginate @points %>
+      </div>
+    </div>
+  </div>
+
+</div>
