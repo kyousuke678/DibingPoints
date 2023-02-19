@@ -8,6 +8,7 @@ class Customers::PointsController < ApplicationController
   def create
     @point = Point.new(point_params)
     @point.customer_id = current_customer.id
+
     if @point.save
       redirect_to user_path(current_customer), notice: "You have created point successfully."
     end
@@ -22,8 +23,9 @@ class Customers::PointsController < ApplicationController
   def index
     #tagによる絞り込み機能　と　sortによる並び替え
     @points = params[:tag_id].present? ? Tag.find(params[:tag_id]).points.order(params[:sort]) : Point.all.order(params[:sort])
+    #byebug
     #ページネーションの記述
-    @points = Point.page(params[:page]).per(10)
+    @points = @points.page(params[:page]).per(10)
   end
 
   def show
@@ -59,7 +61,7 @@ class Customers::PointsController < ApplicationController
   end
 
   def search
-    @points = Point.search(params[:keyword])
+    @points = Point.search(params[:keyword]).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "index"
   end
@@ -67,6 +69,6 @@ class Customers::PointsController < ApplicationController
   private
 
   def point_params
-    params.require(:point).permit(:name, :body, :address, :rate, :lat, :lng)
+    params.require(:point).permit(:name, :body, :rate, :lat, :lng, tag_ids: [])
   end
 end

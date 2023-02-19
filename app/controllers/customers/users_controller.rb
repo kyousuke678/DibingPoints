@@ -4,7 +4,7 @@ class Customers::UsersController < ApplicationController
 
   def show
     @user = Customer.find(params[:id])
-    @points = @user.points
+    @points = @user.points.page(params[:page]).per(10)
     @today_point =  @points.created_today
     @yesterday_point = @points.created_yesterday
     @this_week_point = @points.created_this_week
@@ -38,7 +38,7 @@ class Customers::UsersController < ApplicationController
   end
 
   def guest_user_check
-    redirect_to root_path, notice: 'ゲストユーザーはこの操作はできません。' if current_customer.email == 'guest@example.com'
+    redirect_to user_path(current_customer), notice: 'ゲストユーザーはこの操作はできません。' if current_customer.email == 'guest@example.com'
   end
 
 end
