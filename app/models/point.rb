@@ -22,9 +22,12 @@ class Point < ApplicationRecord
   scope :created_6day_ago, -> { where(created_at: 6.day.ago.all_day) } #6日前
   
   validates :name,presence:true
-  validates :body,presence:true,length:{minimum: 2,maximum:200}
+  validates :body,presence:true,length:{minimum: 2,maximum:20}
+  validates :tags, presence: true
   validates :rate,presence:true
-  validates :tag, acceptance: true
+  validates :lat,presence:true
+  validates :lng,presence:true
+
   
   def save_genres(tag_ids)
     tag_ids.each do |tag_id|
@@ -38,6 +41,6 @@ class Point < ApplicationRecord
   end
   
   def self.search(keyword)
-    where(["name like? OR body like? OR address like?", "%#{keyword}%", "%#{keyword}%","%#{keyword}%"])
+    where(["name like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
   end
 end

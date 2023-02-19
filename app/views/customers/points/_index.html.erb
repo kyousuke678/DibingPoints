@@ -13,9 +13,9 @@
         <td>
           <%= link_to user_path(point.customer) do %>
             <% if point.customer.profile_image.attached? %>
-             <%= image_tag point.customer.profile_image %>
+             <%= image_tag point.customer.profile_image, size: '80x80' %>
             <% else %>
-             <%= image_tag 'no_image.jpg' %>
+             <%= image_tag 'no_image.jpg', size: '80x80' %>
             <% end %>
            <% end %>
         </td>
@@ -35,3 +35,9 @@
     <% end %>
   </tbody>
 </table>
+
+    <div class= "row" >
+      <div class= "col-8 offset-md-4 py-2 mt-5" >
+        <%= paginate @points %>
+      </div>
+    </div>
