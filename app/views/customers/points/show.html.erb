@@ -28,8 +28,13 @@
             <%= render "customers/point_comments/counter", point: @point %>
           </th>
         </tr>
+        <tr>
+          <th></th>
+          <th id="favorite_buttons_<%= @point.id %>">
+            <%= render "customers/favorites/favorite-btn", point: @point %>
+          </th>
+        </tr>
       </table>
-        
         
         <!-----------地図情報----------->
         <h2>周辺情報</h2>
