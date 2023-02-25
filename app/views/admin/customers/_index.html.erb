@@ -12,9 +12,9 @@
       <tr>
         <td>
           <% if point.customer.profile_image.attached? %>
-           <%= image_tag point.customer.profile_image %>
+           <%= image_tag point.customer.profile_image, size: '80x80' %>
           <% else %>
-           <%= image_tag 'no_image.jpg' %>
+           <%= image_tag 'no_image.jpg', size: '80x80' %>
           <% end %>
         </td>
         <td>
