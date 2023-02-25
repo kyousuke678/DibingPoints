@@ -3,7 +3,7 @@
     <div class='col-md-6'>
       <p class="mt-4"></p>
       <mark class="h4 table-secondary">point show</mark><br>
-      
+
       <div class="mt-2">
         <%= link_to "編集する", edit_admin_point_path(@point.id), class: "btn btn-success" %>
         <%= link_to 'Destroy', admin_point_path(@point), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger"%>
@@ -39,16 +39,16 @@
           </th>
         </tr>
       </table>
-        
-        
 
-    
+
+
+
     </div>
-    
-    
+
+
     <div class='col-md-6'>
-  		
-  		
+
+
         <!-----------地図情報----------->
         <h2 class="my-5">周辺情報</h2>
       <div id='map'></div>
@@ -58,7 +58,7 @@
         width: 100%;
       }
       </style>
-      
+
       <!-- js部分 -->
       <script>
       //初期マップの設定
@@ -66,12 +66,12 @@
       let marker
       function initMap(){
         geocoder = new google.maps.Geocoder()
-      
+
         map = new google.maps.Map(document.getElementById('map'), {
           center:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
           zoom: 15,
         });
-      
+
          marker = new google.maps.Marker({
           position:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
           map: map
@@ -80,6 +80,6 @@
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVjViuZ0RsFdHm369SRkDDpfTa658CFXo&callback=initMap" async defer></script>
         <!------------ここまで----------->
-        
+
   </div>
 </div>
