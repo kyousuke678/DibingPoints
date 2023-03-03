@@ -5,6 +5,7 @@ class Customers::UsersController < ApplicationController
   def show
     @user = Customer.find(params[:id])
     @points = @user.points.page(params[:page]).per(10)
+    
     @today_point =  @points.created_today
     @yesterday_point = @points.created_yesterday
     @this_week_point = @points.created_this_week

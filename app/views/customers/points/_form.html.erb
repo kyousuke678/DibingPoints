@@ -7,13 +7,13 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
-          
 
-  
+
+
   <div class="check_box">
     <span><%= f.label :tag, 'タグ' %></span>
     <div>
-      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :category, {include_hidden: false}) do |tag| %> 
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :category, {include_hidden: false}) do |tag| %>
         <%= tag.label do %>
           <%= tag.check_box %>
           <%= tag.text %>
@@ -21,20 +21,20 @@
       <% end %>
     </div>
   </div>
-  
+
 
   <% if point.id === nil %>
     <div class="form-group" id="star">
       <%= f.label :rate %>
       <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
     </div>
-    
+
     <div id="point_raty"></div>
     <script>
       $( function() {
       let raty_elem = document.querySelector('#point_raty');
       raty_elem.innerHTML = ""
-      let option = {  
+      let option = {
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
@@ -43,22 +43,22 @@
       raty(raty_elem,option);
      });
     </script>
-    
-   
+
+
   <% else %>
     <%= render "customers/points/static_rate", point: point %>
   <% end %>
-  
-  
+
+
   </div>
   <div class='col-md-8 offset-md-1'>
-  
-  
+
+
   <div class="actions">
     <%= f.hidden_field :lat,:value => nil, id: :lat %>
     <%= f.hidden_field :lng,:value => nil, id: :lng %>
   </div>
-  
+
 <h2>Map</h2>
 
 <input id="address" type="textbox" value="GeekSalon">
@@ -83,7 +83,7 @@ function initMap(){
   map = new google.maps.Map(document.getElementById('map'), {
     center:  {lat: 35.6803997, lng:139.7690174},  //東京
     zoom: 15,
-    
+
   });
 }
 
@@ -123,12 +123,12 @@ function codeAddress(){
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
-  });   
+  });
 }
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVjViuZ0RsFdHm369SRkDDpfTa658CFXo&callback=initMap" async defer></script>
-          
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
