@@ -1,6 +1,6 @@
 <%= form_with model:point,local:true do |f| %>
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :PointName %>
     <%= f.text_field :name, class: 'form-control book_title' %>
   </div>
   <div class="form-group">
@@ -55,8 +55,8 @@
 
 
   <div class="actions">
-    <%= f.hidden_field :lat,:value => nil, id: :lat %>
-    <%= f.hidden_field :lng,:value => nil, id: :lng %>
+    <%= f.hidden_field :lat,:value => 35.6803997, id: :lat %>
+    <%= f.hidden_field :lng,:value => 139.7690174, id: :lng %>
   </div>
 
 <h2>Map</h2>
