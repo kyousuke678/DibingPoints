@@ -3,9 +3,10 @@ class CreatePoints < ActiveRecord::Migration[6.1]
     create_table :points do |t|
       t.string :name
       t.text :body
-      t.string :address
-      t.integer :customer_id
       t.float :rate
+      t.float :lat
+      t.float :lng
+      t.integer :customer_id
 
       t.timestamps
     end

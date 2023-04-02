@@ -3,12 +3,11 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'info', user: @user %>
-      
-
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
-
+      <%= render 'point_index',points: @points %>
+      <h2>points</h2>
+      <%= render 'customers/points/index',points: @points %>
     </div>
   </div>
 </div>

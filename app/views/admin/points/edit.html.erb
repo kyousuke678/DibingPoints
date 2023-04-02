@@ -1,0 +1,9 @@
+<div class='container'>
+  <%= render 'layouts/errors', obj: @point %>
+  <div class='row'>
+    <div class='col-md-3'>
+  		<mark class="h4 table-secondary">point show</mark>
+  		<%= render 'admin/points/form', point: @point %>
+  		<%= link_to 'Show', admin_point_path(@point) %> |
+  </div>
+</div>
