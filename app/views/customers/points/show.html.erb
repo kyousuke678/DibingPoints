@@ -28,8 +28,13 @@
             <%= render "customers/point_comments/counter", point: @point %>
           </th>
         </tr>
+        <tr>
+          <th></th>
+          <th id="favorite_buttons_<%= @point.id %>">
+            <%= render "customers/favorites/favorite-btn", point: @point %>
+          </th>
+        </tr>
       </table>
-        
         
         <!-----------地図情報----------->
         <h2>周辺情報</h2>
@@ -60,7 +65,7 @@
         });
       }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVjViuZ0RsFdHm369SRkDDpfTa658CFXo&callback=initMap" async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async d：：efer></script>
         <!------------ここまで----------->
     
     </div>
