@@ -1,33 +1,46 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h2>Sign up</h2>
-      <%= form_with model: resource, url: registration_path(resource_name), class:"w-100" do |f| %>
-        <%= render "customers/shared/error_messages", resource: resource %>
-        <div class="field">
-          <%= f.label :name %><br />
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class: "email" %>
-        </div>
-        <div class="field">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "off", class: "password" %>
-        </div>
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Sign up" ,class: 'btn btn-success' %>
-        </div>
-      <% end %>
-      <%= render "customers/shared/links" %>
+ <div class="container-fluid registration py-5">
+  <div class="row">
+    <div class="offset-2">
+      <h2 class="px-3">新規会員登録</h2>
     </div>
   </div>
+
+    <div class="row ml-5 pl-5 mt-3 w-75 mx-auto">
+      <%= form_with model: resource, url: registration_path(resource_name), class:"w-100" do |f| %>
+        <%= render "customers/shared/error_messages", resource: resource %>
+
+      <div class="row form-group">
+        <div class="col-sm-3 offset-1">名前</div>
+        <div class="col-sm-8"><%= f.text_field :name, placeholder:"山村" , size: 30%></div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-sm-3 offset-1">メールアドレス</div>
+        <div class="col-sm-8"><%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com", size: 30 %></div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-sm-3 offset-1">パスワード（６文字以上）</div>
+        <div class="col-sm-8"><%= f.password_field :password, autocomplete: "new-password", size: 30 %></div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-sm-3 offset-1">パスワード（確認用）</div>
+        <div class="col-sm-8"><%= f.password_field :password_confirmation, autocomplete: "new-password", size: 30 %></div>
+      </div>
+
+      <div class="col-6 text-right">
+        <%= f.submit "新規登録", class: "btn btn-lg btn-danger mx-auto" %>
+      </div>
+
+    <div class="mt-5 offset-2">
+      <h4>既に登録済みの方</h4>
+    </div>
+    <div class="col-5 text-right mt-5">
+      <div class="offset-2">
+        <%= link_to "会員の方はこちらからログイン", new_session_path(resource_name), class: "btn btn-sm btn-outline-danger" %>
+      </div>
+    <% end %>
+  </div>
 </div>
+

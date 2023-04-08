@@ -4,7 +4,6 @@ class CreatePoints < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :body
       t.float :rate
-      t.string :address
       t.float :lat
       t.float :lng
       t.integer :customer_id

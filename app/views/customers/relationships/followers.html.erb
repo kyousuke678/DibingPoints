@@ -1,6 +1,10 @@
-<h2>Follower Users</h2>
-<% if @users.exists? %>
-  <%= render 'users/index', users: @users %>
-<% else %>
- <p>ユーザーはいません</p>
-<% end %>
+<div class='container'>
+  <div class='p-5'>
+    <h2>Follower Users</h2>
+    <% if @users.exists? %>
+      <%= render 'customers/users/index', users: @users %>
+    <% else %>
+      <p class="p-5">ユーザーはいません</p>
+    <% end %>
+  </div>
+</div>
