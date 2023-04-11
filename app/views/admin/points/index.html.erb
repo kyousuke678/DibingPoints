@@ -6,25 +6,27 @@
   <table class="table table-bordered col-10">
     <thead>
       <tr>
-        <th class="table-secondary">name</th>
-        <th class="table-secondary">address</th>
-        <th class="table-secondary">tag</th>
+        <th class="table-secondary col-lg-1">Point.id</th>
+        <th class="table-secondary col-lg-2">name</th>
+        <th class="table-secondary col-lg-2">tag</th>
+        <th class="table-secondary col-lg-2">star</th>
       </tr>
     </thead>
     <tbody>
       <% @points.each do |point| %>
         <tr>
+          <td><%= point.id %></td>
           <td>
             <%= link_to admin_point_path(point.id) do %>
               <%= point.name %>
             <% end %>
           </td>
-          <td><%= point.address %></td>
           <td>
             <% point.tags.each do |tag| %>
               <%= tag.category %>
             <% end %>
           </td>
+          <td><%= render "customers/points/static_rate", point: point %></td>
         </tr>
       <% end %>
     </tbody>

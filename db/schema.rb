@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 2023_02_13_075647) do
     t.string "name"
     t.text "body"
     t.float "rate"
-    t.string "address"
     t.float "lat"
     t.float "lng"
     t.integer "customer_id"

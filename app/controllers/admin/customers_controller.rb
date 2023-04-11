@@ -6,6 +6,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @points = @customer.points
   end
 
   def edit
@@ -21,6 +22,6 @@ class Admin::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit(:is_deleted, :name, :address)
+    params.require(:customer).permit(:is_deleted, :name, :email, :profile_image, :introduction)
   end
 end
