@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_admin!, if: :admin_url
+  
+  def admin_url   # adminページのアクセス制限
+    request.fullpath.include?("/admin")
+  end
+  
   def after_sign_in_path_for(resource_or_scope)
     if resource.is_a?(Admin)
       admin_customers_path  # admin login先
