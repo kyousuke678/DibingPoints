@@ -1,31 +1,40 @@
 Rails.application.routes.draw do
+  root "homes#top"
 
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-  
+  #ゲストログイン
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  end
+
+  #会員側のルーティング設定
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "customers/registrations",
     sessions: 'customers/sessions'
   }
-  
-  #会員側のルーティング設定
-  root "homes#top"
-  get "/home/about" => "homes#about", as: "about"
 
+  get "/home/about" => "homes#about", as: "about"
   scope module: :customers do
     resources :points, only: [:index,:show,:edit,:new,:create,:destroy,:update] do
       resources :point_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resources :users, only: [:index,:show,:edit,:update] do
+      resource :relationships, only: [:create, :destroy]
+    	get 'followings' => 'relationships#followings', as: 'followings'
+    	get 'followers' => 'relationships#followers', as: 'followers'
     end
   end
-  
+  get 'search' => 'customers/points#search'
+
   #管理者側のルーティング設定
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+
   namespace :admin do
     root 'homes#top'
-
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :points, only: [:index, :show, :edit, :update, :destroy]
   end
-  
+
 end

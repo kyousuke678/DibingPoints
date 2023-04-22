@@ -1,34 +1,83 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'>
-      <h2>User info</h2>
-
-    </div>
-    <div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <tr>
-          <td>
-          </td>
-          
-          
-          <td><%= @point.name %></td>
-          <td><%= @point.body %></td>
-          <td><%= @point.address %></td>
-          <td class="point-comments-counter">
+    <div class='col-md-6'>
+      <h2>Point info</h2>
+      
+      <%= link_to 'user info', user_path(@point.customer), class: "btn btn-sm btn-info" %>
+      <% if @point.customer == current_customer %>
+        <%= link_to 'Edit', edit_point_path(@point), class: "btn btn-sm btn-success" %>
+        <%= link_to 'Destroy', @point, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+      <% end %>
+        
+      <table class='table'>
+        <tr>
+       	  <th>point name</th>
+       	  <th><%= @point.name %></th>
+        </tr>
+        <tr>
+       	  <th>thoughts</th>
+       	  <th><%= @point.body %></th>
+        </tr>
+        <tr>
+          <th>五段階評価</th>
+          <th><%= render "static_rate", point: @point %></th>
+        </tr>
+        <tr>
+          <th>コメント数</th>
+          <th class="point-comments-counter">
             <%= render "customers/point_comments/counter", point: @point %>
-          </td>
-          <% if @point.customer == current_customer %>
-            <td><%= link_to 'Edit', edit_point_path(@point), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @point, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-          <% end %>
+          </th>
+        </tr>
+        <tr>
+          <th></th>
+          <th id="favorite_buttons_<%= @point.id %>">
+            <%= render "customers/favorites/favorite-btn", point: @point %>
+          </th>
         </tr>
       </table>
+        
+        <!-----------地図情報----------->
+        <h2>周辺情報</h2>
+      <div id='map'></div>
+      <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      </style>
+      
+      <!-- js部分 -->
+      <script>
+      //初期マップの設定
+      let map
+      let marker
+      function initMap(){
+        geocoder = new google.maps.Geocoder()
+      
+        map = new google.maps.Map(document.getElementById('map'), {
+          center:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
+          zoom: 15,
+        });
+      
+         marker = new google.maps.Marker({
+          position:  {lat: <%= @point.lat %>, lng: <%= @point.lng %>},
+          map: map
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async d：：efer></script>
+        <!------------ここまで----------->
+    
+    </div>
+    
+    
+    <div class='col-md-6'>
+  		<h2>Comments</h2>
       <div class="point-comments-index">
         <%= render "customers/point_comments/index", point: @point %>
       </div>
       <%= render "customers/point_comments/form", point: @point, point_comment: @point_comment %>
-
+      
     </div>
   </div>
 </div>
